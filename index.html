@@ -3,29 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Singing Monsters Generator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>My Sing Monsters Generator</title>
 </head>
 <body>
-    <h1>My Singing Monsters Generator</h1>
-    <label for="monsterName">Nome do Monstro:</label>
-    <input type="text" id="monsterName" placeholder="Digite o nome do monstro">
+    <h1>My Sing Monsters Generator</h1>
 
-    <label for="elementCount">Quantidade de Elementos:</label>
-    <select id="elementCount">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>
+    <form action="#" method="post">
+        <label for="monsterName">Nome do Monstro:</label>
+        <input type="text" id="monsterName" name="monsterName"><br><br>
 
-    <label for="currency">Moeda de Produção:</label>
-    <input type="text" id="currency" placeholder="Moeda de produção">
+        <label for="currency">Moeda:</label>
+        <select id="currency" name="currency">
+            <option value="moedas">Moedas</option>
+            <option value="diamantes">Diamantes</option>
+            <!-- Adicione mais opções conforme necessário -->
+        </select><br><br>
 
-    <button onclick="generateMonster()">Gerar Monstro</button>
+        <label for="numElements">Número de Elementos:</label>
+        <select id="numElements" name="numElements">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br><br>
 
-    <div id="monsterInfo"></div>
+        <label for="elements">Elementos:</label>
+        <select id="elements" name="elements">
+            <option value="terra">Terra</option>
+            <option value="fogo">Fogo</option>
+            <option value="água">Água</option>
+            <option value="ar">Ar</option>
+            <!-- Adicione mais opções conforme necessário -->
+        </select><br><br>
 
-    <script src="script.js"></script>
+        <input type="submit" value="Make it!">
+    </form>
 </body>
 </html>
