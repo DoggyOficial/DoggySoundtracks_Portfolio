@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Singing Monsters Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>My Singing Monsters Generator</h1>
+    <label for="monsterName">Nome do Monstro:</label>
+    <input type="text" id="monsterName" placeholder="Digite o nome do monstro">
+
+    <label for="elementCount">Quantidade de Elementos:</label>
+    <select id="elementCount">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+
+    <label for="currency">Moeda de Produção:</label>
+    <input type="text" id="currency" placeholder="Moeda de produção">
+
+    <button onclick="generateMonster()">Gerar Monstro</button>
+
+    <div id="monsterInfo"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
