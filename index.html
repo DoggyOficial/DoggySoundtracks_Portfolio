@@ -43,7 +43,7 @@
             margin-top: 10px;
         }
 
-        .play-btn {
+        .play-btn, .stop-btn {
             background-color: #1DB954;
             border: none;
             color: white;
@@ -59,6 +59,8 @@
             height: 10px;
             border-radius: 5px;
             overflow: hidden;
+            cursor: pointer;
+            position: relative;
         }
 
         .progress-bar {
@@ -90,7 +92,7 @@
 </footer>
 
 <script>
-    // Array de músicas com formato .ogg
+    // Array de músicas com formato .wav
     const musicas = [
         { nome: 'Doggy - In my way', caminho: 'OST/InMyWay.wav' },
         { nome: 'Doggy - Run', caminho: 'OST/Run.wav' }
@@ -114,6 +116,10 @@
         playBtn.className = 'play-btn';
         playBtn.textContent = 'Play';
 
+        const stopBtn = document.createElement('button');
+        stopBtn.className = 'stop-btn';
+        stopBtn.textContent = 'Stop';
+
         const progressContainer = document.createElement('div');
         progressContainer.className = 'progress-container';
 
@@ -122,6 +128,7 @@
 
         progressContainer.appendChild(progressBar);
         customPlayer.appendChild(playBtn);
+        customPlayer.appendChild(stopBtn);
         customPlayer.appendChild(progressContainer);
 
         musicCard.appendChild(title);
@@ -151,8 +158,26 @@
             isPlaying = !isPlaying;
         });
 
+        // Evento de clique para o botão de stop
+        stopBtn.addEventListener('click', () => {
+            audio.pause();
+            audio.currentTime = 0;
+            playBtn.textContent = 'Play';
+            isPlaying = false;
+            progressBar.style.width = '0%';
+        });
+
         // Atualiza a barra de progresso conforme o áudio é reproduzido
         audio.addEventListener('timeupdate', updateProgress);
+
+        // Permite a navegação pela barra de progresso
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+
+            audio.currentTime = (clickX / width) * duration;
+        });
     });
 </script>
 
