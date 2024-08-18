@@ -68,7 +68,7 @@
     // Array de músicas com nome e caminho
     const musicas = [
         { nome: 'Doggy - In my way', caminho: 'OST/In_my_way.mp3' },
-        { nome: 'Doggy - The Journey', caminho: 'OST/The_Journey.mp3' },
+        { nome: 'Doggy - Run', caminho: 'OST/Run.mp3' },
         // Adicione mais músicas conforme necessário
     ];
 
@@ -87,7 +87,7 @@
 
         const source = document.createElement('source');
         source.src = musica.caminho;
-        source.type = 'audio/mp3';  // Tipo do arquivo de áudio
+        source.type = 'audio/mpeg';  // Tipo do arquivo de áudio
 
         audio.appendChild(source);
         card.appendChild(title);
