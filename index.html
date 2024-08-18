@@ -36,9 +36,35 @@
             text-align: left;
         }
 
-        audio {
-            width: 100%;
+        /* Customizações do player */
+        .custom-player {
+            display: flex;
+            align-items: center;
             margin-top: 10px;
+        }
+
+        .play-btn {
+            background-color: #1DB954;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            background-color: #444;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: #1DB954;
+            height: 100%;
+            width: 0;
         }
 
         footer {
@@ -80,18 +106,53 @@
         const title = document.createElement('h3');
         title.textContent = musica.nome;
 
-        const audio = document.createElement('audio');
-        audio.controls = true;
+        // Criando o player customizado
+        const customPlayer = document.createElement('div');
+        customPlayer.className = 'custom-player';
 
-        const source = document.createElement('source');
-        source.src = musica.caminho;
-        source.type = 'audio/wav';  // Tipo do arquivo de áudio
+        const playBtn = document.createElement('button');
+        playBtn.className = 'play-btn';
+        playBtn.textContent = 'Play';
 
-        audio.appendChild(source);
+        const progressContainer = document.createElement('div');
+        progressContainer.className = 'progress-container';
+
+        const progressBar = document.createElement('div');
+        progressBar.className = 'progress-bar';
+
+        progressContainer.appendChild(progressBar);
+        customPlayer.appendChild(playBtn);
+        customPlayer.appendChild(progressContainer);
+
         musicCard.appendChild(title);
-        musicCard.appendChild(audio);
+        musicCard.appendChild(customPlayer);
 
         container.appendChild(musicCard);
+
+        // Criando o elemento de áudio
+        const audio = new Audio(musica.caminho);
+        let isPlaying = false;
+
+        // Função para atualizar a barra de progresso
+        function updateProgress() {
+            const percentage = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = percentage + '%';
+        }
+
+        // Evento de clique para o botão de play/pause
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.textContent = 'Play';
+            } else {
+                audio.play();
+                playBtn.textContent = 'Pause';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Atualiza a barra de progresso conforme o áudio é reproduzido
+        audio.addEventListener('timeupdate', updateProgress);
     });
 </script>
 
