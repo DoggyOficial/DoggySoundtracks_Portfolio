@@ -1,76 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Sing Monsters Generator</title>
+    <title>Portfólio Musical - Doggy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #1DB954;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .music-card {
+            background-color: #333333;
+            border-radius: 10px;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #1DB954;
+            color: #121212;
+        }
+    </style>
 </head>
 <body>
-    <h1>My Sing Monsters Generator</h1>
 
-    <form action="#" method="post">
-        <label for="monsterName">Nome do Monstro:</label>
-        <input type="text" id="monsterName" name="monsterName"><br><br>
+<header>
+    <h1>Portfólio Musical - Doggy</h1>
+</header>
 
-        <label for="currency">Moeda:</label>
-        <select id="currency" name="currency">
-            <option value="Coins">Coins</option>
-            <option value="Diamonds">Diamonds</option>
-            <option value="Treats">Treats</option>
-            <option value="Shards">Shards</option>
-            <option value="Starpower">Starpower</option>
-            <option value="Keys">Keys</option>
-            <option value="Relics">Relics</option>
-            <option value="Medals">Medals</option>
-        </select><br><br>
+<div class="content">
+    <h2>Minhas Músicas</h2>
+    <div id="music-container"></div>
+</div>
 
-        <label for="numElements">Número de Elementos:</label>
-        <select id="numElements" name="numElements">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select><br><br>
+<footer>
+    <p>Feito por Doggy - 2024</p>
+</footer>
 
-        <label for="elements">Elementos:</label>
-        <select id="elements" name="elements">
-            <option value="air">Air</option>
-            <option value="beat-hereafter">Beat Hereafter</option>
-            <option value="bone">Bone</option>
-            <option value="celestial">Celestial</option>
-            <option value="cloverspell">Cloverspell</option>
-            <option value="cold">Cold</option>
-            <option value="crystal">Crystal</option>
-            <option value="dipster">Dipster</option>
-            <option value="dream">Dream</option>
-            <option value="earth">Earth</option>
-            <option value="echoes-of-eco">Echoes of Eco</option>
-            <option value="electricity">Electricity</option>
-            <option value="eggs-travaganza">Eggs-Travaganza</option>
-            <option value="faerie">Faerie</option>
-            <option value="festival-of-yay">Festival of Yay</option>
-            <option value="fire">Fire</option>
-            <option value="legendary">Legendary</option>
-            <option value="life-formula">Life-Formula</option>
-            <option value="light">Light</option>
-            <option value="mech">Mech</option>
-            <option value="mind-boggle">MindBoggle</option>
-            <option value="mythical">Mythical</option>
-            <option value="plasma">Plasma</option>
-            <option value="plant">Plant</option>
-            <option value="poison">Poison</option>
-            <option value="psychic">Psychic</option>
-            <option value="season-of-love">Season of Love</option>
-            <option value="shadow">Shadow</option>
-            <option value="sky-painting">SkyPainting</option>
-            <option value="spooktacle">Spooktacle</option>
-            <option value="summer-song">SummerSong</option>
-            <option value="terra">Terra</option>
-            <option value="water">Water</option>
-        </select><br><br>
+<script>
+    // Array de músicas com nome e caminho
+    const musicas = [
+        { nome: 'Nome da Música 1', caminho: 'OST/musica1.mp3' },
+        { nome: 'Nome da Música 2', caminho: 'OST/musica2.mp3' },
+        // Adicione mais músicas conforme necessário
+    ];
 
-        <input type="submit" value="Make it!">
-    </form>
+    const container = document.getElementById('music-container');
+
+    // Função para criar os elementos de música dinamicamente
+    musicas.forEach(musica => {
+        const card = document.createElement('div');
+        card.className = 'music-card';
+
+        const title = document.createElement('h3');
+        title.textContent = musica.nome;
+
+        const audio = document.createElement('audio');
+        audio.controls = true;
+        audio.src = musica.caminho;
+
+        card.appendChild(title);
+        card.appendChild(audio);
+
+        container.appendChild(card);
+    });
+</script>
+
 </body>
 </html>
