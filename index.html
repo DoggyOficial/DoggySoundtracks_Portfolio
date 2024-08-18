@@ -83,8 +83,12 @@
 
         const audio = document.createElement('audio');
         audio.controls = true;
-        audio.src = musica.caminho;
 
+        const source = document.createElement('source');
+        source.src = musica.caminho;
+        source.type = 'audio/mpeg';  // Tipo do arquivo de áudio
+
+        audio.appendChild(source);
         card.appendChild(title);
         card.appendChild(audio);
 
