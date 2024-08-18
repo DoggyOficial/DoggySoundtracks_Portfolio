@@ -1,99 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoggySoundtracks - Portfolio</title>
+    <title>Reprodutor de Música</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #FFFFFF;
-            margin: 0;
-            padding: 0;
             text-align: center;
+            background-color: #f4f4f4;
         }
-
-        header {
-            background-color: #1DB954;
-            padding: 20px;
-        }
-
-        h1 {
-            margin: 0;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        .music-card {
-            background-color: #333333;
-            border-radius: 10px;
-            margin: 10px auto;
-            padding: 15px;
+        .player-container {
+            margin: 20px auto;
             max-width: 600px;
-            text-align: left;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         audio {
             width: 100%;
-            margin-top: 10px;
-        }
-
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #1DB954;
-            color: #121212;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-
-<header>
     <h1>DoggySoundtracks - Portfolio</h1>
-</header>
-
-<div class="content" id="music-container">
-    <!-- Músicas serão carregadas aqui -->
-</div>
-
-<footer>
-    <p>Simple is better</p>
-</footer>
-
-<script>
-    // Array de músicas
-    const musicas = [
-        { nome: 'Doggy - In my way', caminho: 'OST/InMyWay.mp3' },
-        { nome: 'Doggy - Run', caminho: 'OST/Run.mp3' }
-    ];
-
-    const container = document.getElementById('music-container');
-
-    // Função para criar os elementos das músicas dinamicamente
-    musicas.forEach(musica => {
-        const musicCard = document.createElement('div');
-        musicCard.className = 'music-card';
-
-        const title = document.createElement('h3');
-        title.textContent = musica.nome;
-
-        const audio = document.createElement('audio');
-        audio.controls = true;
-
-        const source = document.createElement('source');
-        source.src = musica.caminho;
-        source.type = 'audio/mpeg';  // Tipo do arquivo de áudio
-
-        audio.appendChild(source);
-        musicCard.appendChild(title);
-        musicCard.appendChild(audio);
-
-        container.appendChild(musicCard);
-    });
-</script>
-
+    <div class="player-container">
+        <audio controls>
+            <source src="OST/InMyWay.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+        <audio controls>
+            <source src="OST/Run.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+        <!-- Adicione mais players conforme necessário -->
+    </div>
 </body>
 </html>
