@@ -84,8 +84,8 @@
             volume: 'Vol.1',
             capa: 'OST/Vol.1/AlbumImage.png',
             musicas: [
-                { nome: 'Doggy - In my way', caminho: 'OST/Vol.1/InMyWay.mp3' },
-                { nome: 'Doggy - Run', caminho: 'OST/Vol.1/Run.mp3' }
+                { nome: 'Doggy - In my way', caminho: 'OST/VolOne/InMyWay.mp3' },
+                { nome: 'Doggy - Run', caminho: 'OST/VolOne/Run.mp3' }
             ]
         }
         // Adicione mais álbuns conforme necessário
@@ -118,7 +118,7 @@
 
             const source = document.createElement('source');
             source.src = musica.caminho;
-            source.type = 'audio/mp3';  // Tipo do arquivo de áudio
+            source.type = 'audio/mpeg';  // Tipo do arquivo de áudio
 
             audio.appendChild(source);
             musicCard.appendChild(title);
