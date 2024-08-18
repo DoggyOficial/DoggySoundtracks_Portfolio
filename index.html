@@ -66,8 +66,8 @@
 <script>
     // Array de músicas com formato .ogg
     const musicas = [
-        { nome: 'Doggy - In my way', caminho: 'OST/InMyWay.ogg' },
-        { nome: 'Doggy - Run', caminho: 'OST/Run.ogg' }
+        { nome: 'Doggy - In my way', caminho: 'OST/InMyWay.wav' },
+        { nome: 'Doggy - Run', caminho: 'OST/Run.wav' }
     ];
 
     const container = document.getElementById('music-container');
@@ -85,7 +85,7 @@
 
         const source = document.createElement('source');
         source.src = musica.caminho;
-        source.type = 'audio/ogg';  // Tipo do arquivo de áudio
+        source.type = 'audio/wav';  // Tipo do arquivo de áudio
 
         audio.appendChild(source);
         musicCard.appendChild(title);
