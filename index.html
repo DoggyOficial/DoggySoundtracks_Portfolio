@@ -1,68 +1,101 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Player</title>
+    <title>DoggySoundtracks - Portfolio</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
             text-align: center;
-            background-color: #f0f0f0;
-            color: #333;
         }
-        .audio-player {
+
+        header {
+            background-color: #1DB954;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .music-card {
+            background-color: #333333;
+            border-radius: 10px;
             margin: 20px auto;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 80%;
+            padding: 20px;
             max-width: 600px;
+            text-align: left;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #1DB954;
+            color: #121212;
         }
     </style>
 </head>
 <body>
-    <h1>Audio Player</h1>
-    <div id="players"></div>
 
-    <script>
-        // Função para criar um player de áudio
-        function createAudioPlayer(fileName) {
-            const div = document.createElement('div');
-            div.className = 'audio-player';
-            
-            const audio = document.createElement('audio');
-            audio.controls = true;
-            audio.src = `OST/${fileName}`;
-            
-            const label = document.createElement('p');
-            label.textContent = fileName;
-            
-            div.appendChild(label);
-            div.appendChild(audio);
-            return div;
-        }
+<header>
+    <h1>DoggySoundtracks - Portfolio</h1>
+</header>
 
-        // Função para listar e exibir arquivos
-        async function listAudioFiles() {
-            const response = await fetch('ost/'); // Obter lista de arquivos
-            const text = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, 'text/html');
-            const links = doc.querySelectorAll('a');
+<div class="content">
+    <h2>Here it is, all my music produced since 2024...</h2>
+    <div id="music-container"></div>
+</div>
 
-            const playersContainer = document.getElementById('players');
-            links.forEach(link => {
-                const fileName = link.textContent;
-                if (fileName.endsWith('.mp3')) { // Filtrar apenas arquivos MP3
-                    const player = createAudioPlayer(fileName);
-                    playersContainer.appendChild(player);
-                }
-            });
-        }
+<footer>
+    <p>Simple is better</p>
+</footer>
 
-        listAudioFiles();
-    </script>
+<script>
+    // Array de músicas com nome e caminho
+    const musicas = [
+        { nome: 'Doggy - In my way', caminho: 'OST/In_my_way.mp3' },
+        { nome: 'Doggy - The Journey', caminho: 'OST/The_Journey.mp3' },
+        // Adicione mais músicas conforme necessário
+    ];
+
+    const container = document.getElementById('music-container');
+
+    // Função para criar os elementos de música dinamicamente
+    musicas.forEach(musica => {
+        const card = document.createElement('div');
+        card.className = 'music-card';
+
+        const title = document.createElement('h3');
+        title.textContent = musica.nome;
+
+        const audio = document.createElement('audio');
+        audio.controls = true;
+
+        const source = document.createElement('source');
+        source.src = musica.caminho;
+        source.type = 'audio/mp3';  // Tipo do arquivo de áudio
+
+        audio.appendChild(source);
+        card.appendChild(title);
+        card.appendChild(audio);
+
+        container.appendChild(card);
+    });
+</script>
+
 </body>
 </html>
