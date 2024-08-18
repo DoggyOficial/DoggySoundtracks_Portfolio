@@ -27,27 +27,13 @@
             padding: 20px;
         }
 
-        .album {
+        .music-card {
             background-color: #333333;
             border-radius: 10px;
-            margin: 20px auto;
-            padding: 20px;
+            margin: 10px auto;
+            padding: 15px;
             max-width: 600px;
             text-align: left;
-            position: relative;
-        }
-
-        .album img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .music-card {
-            background-color: #444444;
-            border-radius: 10px;
-            margin: 10px 0;
-            padding: 10px;
         }
 
         audio {
@@ -69,8 +55,8 @@
     <h1>DoggySoundtracks - Portfolio</h1>
 </header>
 
-<div class="content" id="albums-container">
-    <!-- Álbuns e músicas serão carregados aqui -->
+<div class="content" id="music-container">
+    <!-- Músicas serão carregadas aqui -->
 </div>
 
 <footer>
@@ -78,60 +64,34 @@
 </footer>
 
 <script>
-    // Array de álbuns com suas respectivas músicas e capas
-    const albuns = [
-        {
-            volume: 'Vol.1',
-            capa: 'OST/VolOne/AlbumImage.png',
-            musicas: [
-                { nome: 'Doggy - In my way', caminho: 'OST/VolOne/InMyWay.mp3' },
-                { nome: 'Doggy - Run', caminho: 'OST/VolOne/Run.mp3' }
-            ]
-        }
-        // Adicione mais álbuns conforme necessário
+    // Array de músicas
+    const musicas = [
+        { nome: 'Doggy - In my way', caminho: 'OST/InMyWay.mp3' },
+        { nome: 'Doggy - Run', caminho: 'OST/Run.mp3' }
     ];
 
-    const container = document.getElementById('albums-container');
+    const container = document.getElementById('music-container');
 
-    // Função para criar os elementos dos álbuns e suas músicas dinamicamente
-    albuns.forEach(album => {
-        const albumCard = document.createElement('div');
-        albumCard.className = 'album';
+    // Função para criar os elementos das músicas dinamicamente
+    musicas.forEach(musica => {
+        const musicCard = document.createElement('div');
+        musicCard.className = 'music-card';
 
-        const albumCover = document.createElement('img');
-        albumCover.src = album.capa;
+        const title = document.createElement('h3');
+        title.textContent = musica.nome;
 
-        const albumTitle = document.createElement('h2');
-        albumTitle.textContent = album.volume;
+        const audio = document.createElement('audio');
+        audio.controls = true;
 
-        const musicList = document.createElement('div');
+        const source = document.createElement('source');
+        source.src = musica.caminho;
+        source.type = 'audio/mpeg';  // Tipo do arquivo de áudio
 
-        album.musicas.forEach(musica => {
-            const musicCard = document.createElement('div');
-            musicCard.className = 'music-card';
+        audio.appendChild(source);
+        musicCard.appendChild(title);
+        musicCard.appendChild(audio);
 
-            const title = document.createElement('h3');
-            title.textContent = musica.nome;
-
-            const audio = document.createElement('audio');
-            audio.controls = true;
-
-            const source = document.createElement('source');
-            source.src = musica.caminho;
-            source.type = 'audio/mpeg';  // Tipo do arquivo de áudio
-
-            audio.appendChild(source);
-            musicCard.appendChild(title);
-            musicCard.appendChild(audio);
-
-            musicList.appendChild(musicCard);
-        });
-
-        albumCard.appendChild(albumCover);
-        albumCard.appendChild(albumTitle);
-        albumCard.appendChild(musicList);
-
-        container.appendChild(albumCard);
+        container.appendChild(musicCard);
     });
 </script>
 
