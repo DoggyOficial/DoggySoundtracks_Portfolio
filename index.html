@@ -27,13 +27,27 @@
             padding: 20px;
         }
 
-        .music-card {
+        .album {
             background-color: #333333;
             border-radius: 10px;
             margin: 20px auto;
             padding: 20px;
             max-width: 600px;
             text-align: left;
+            position: relative;
+        }
+
+        .album img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .music-card {
+            background-color: #444444;
+            border-radius: 10px;
+            margin: 10px 0;
+            padding: 10px;
         }
 
         audio {
@@ -55,9 +69,8 @@
     <h1>DoggySoundtracks - Portfolio</h1>
 </header>
 
-<div class="content">
-    <h2>Here it is, all my music produced since 2024...</h2>
-    <div id="music-container"></div>
+<div class="content" id="albums-container">
+    <!-- Álbuns e músicas serão carregados aqui -->
 </div>
 
 <footer>
@@ -65,35 +78,60 @@
 </footer>
 
 <script>
-    // Array de músicas com nome e caminho
-    const musicas = [
-        { nome: 'Doggy - In my way', caminho: 'OST/In-my-way.mp3' },
-        { nome: 'Doggy - Run', caminho: 'OST/Run.mp3' },
-        // Adicione mais músicas conforme necessário
+    // Array de álbuns com suas respectivas músicas e capas
+    const albuns = [
+        {
+            volume: 'Vol.1 - Tales of a little composer',
+            capa: 'OST/Vol.1/AlbumImage.png',
+            musicas: [
+                { nome: 'Doggy - In my way', caminho: 'OST/Vol.1/InMyWay.mp3' },
+                { nome: 'Doggy - Run', caminho: 'OST/Vol.1/Run.mp3' }
+            ]
+        }
+        // Adicione mais álbuns conforme necessário
     ];
 
-    const container = document.getElementById('music-container');
+    const container = document.getElementById('albums-container');
 
-    // Função para criar os elementos de música dinamicamente
-    musicas.forEach(musica => {
-        const card = document.createElement('div');
-        card.className = 'music-card';
+    // Função para criar os elementos dos álbuns e suas músicas dinamicamente
+    albuns.forEach(album => {
+        const albumCard = document.createElement('div');
+        albumCard.className = 'album';
 
-        const title = document.createElement('h3');
-        title.textContent = musica.nome;
+        const albumCover = document.createElement('img');
+        albumCover.src = album.capa;
 
-        const audio = document.createElement('audio');
-        audio.controls = true;
+        const albumTitle = document.createElement('h2');
+        albumTitle.textContent = album.volume;
 
-        const source = document.createElement('source');
-        source.src = musica.caminho;
-        source.type = 'audio/mpeg';  // Tipo do arquivo de áudio
+        const musicList = document.createElement('div');
 
-        audio.appendChild(source);
-        card.appendChild(title);
-        card.appendChild(audio);
+        album.musicas.forEach(musica => {
+            const musicCard = document.createElement('div');
+            musicCard.className = 'music-card';
 
-        container.appendChild(card);
+            const title = document.createElement('h3');
+            title.textContent = musica.nome;
+
+            const audio = document.createElement('audio');
+            audio.controls = true;
+
+            const source = document.createElement('source');
+            source.src = musica.caminho;
+            source.type = 'audio/mp3';  // Tipo do arquivo de áudio
+
+            audio.appendChild(source);
+            musicCard.appendChild(title);
+            musicCard.appendChild(audio);
+
+            musicList.appendChild(musicCard);
+        });
+
+        albumCard.appendChild(albumCover);
+        albumCard.appendChild(albumTitle);
+        albumCard.appendChild(musicList);
+
+        container.appendChild(albumCard);
     });
 </script>
 
